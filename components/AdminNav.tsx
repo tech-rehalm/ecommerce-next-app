@@ -1,7 +1,8 @@
 "use client"
 
+import { getSession } from '@/lib/getSession'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { redirect, usePathname } from 'next/navigation'
 import React from 'react'
 
 
@@ -23,9 +24,6 @@ const links = [
     path: "/dashboard/orders"
   },
   {
-    title: "Create Products",
-    path: "/dashboard/create"
-  },{
     title: "Settings",
     path: "/dashboard/settings"
   },
@@ -38,7 +36,7 @@ const links = [
 export default function AdminNav() {
   const pathname = usePathname()
   return (
-    <div className='w-[200px]  text-white text-lg pt-6 pl-5  min-h-screen h-full  flex flex-col  bg-gradient-to-r from-purple-600 to-fuchsia-600 font-extrabold bottom-0 '>
+    <div className='w-[200px]  text-white text-lg pt-6 pl-5  min-h-screen h-full  flex flex-col  bg-gradient-to-r from-purple-600 to-fuchsia-600 font-[900] bottom-0'>
       {links.map((link)=>(
         <Link  key={link.title} href={link.path} className={`${pathname === link.path? "bg-white text-purple-600 rounded-l-2xl": ""}w-full rounded-l-xl p-4`}>{link.title}</Link>
       ))}

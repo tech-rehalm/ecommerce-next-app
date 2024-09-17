@@ -13,8 +13,7 @@ interface Product {
   _id: string;
   name: string;
   image: string;
-  brand: string;
-  quantity: number;
+  model: string;
   category: Category;
   description: string;
   reviews: any[];
@@ -48,7 +47,7 @@ export default function Products() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('/api/categories');
+      const response = await fetch('/api/category');
       const data = await response.json();
       setCategories(data.categories);
     } catch (error) {
@@ -63,8 +62,7 @@ export default function Products() {
     const productData = {
       name: formData.get('name'),
       image: imagePreview,
-      brand: formData.get('brand'),
-      quantity: Number(formData.get('quantity')),
+      model: formData.get('model'),
       category: formData.get('category'),
       description: formData.get('description'),
       rating: Number(formData.get('rating')),
@@ -127,13 +125,14 @@ export default function Products() {
 
   return (
     <AdminLayout>
-      <div className="w-full min-h-screen p-10">
-        <div className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent">
+      <div className="w-full min-h-screen p-10 font-bold">
+        <div className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent">
           {formMode === 'create' ? 'Create Product' : 'Edit Product'}
         </div>
 
-        <form onSubmit={handleSubmit} className='flex flex-col gap-5 mt-5'>
-          <label htmlFor="name" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
+        <form onSubmit={handleSubmit} className='flex flex-wrap gap-5 mt-5'>
+          <div>
+          <label htmlFor="name" className='bg-gradient-to-r text-xl block from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent'>
             Product Name
           </label>
           <input
@@ -145,45 +144,37 @@ export default function Products() {
             required
             defaultValue={activeProduct?.name || ''}
           />
-          
-          <label htmlFor="image" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
+          </div>
+          <div>
+          <label htmlFor="image" className='bg-gradient-to-r text-xl block from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent'>
             Product Image
           </label>
           <input
+          name='image'
+          id='image'
             type="file"
             accept="image/*"
             onChange={handleImageChange}
             className='rounded-xl text-fuchsia-600 w-[300px] border-none bg-purple-200 font-bold p-2'
           />
           {imagePreview && <img src={imagePreview as string} alt="Preview" className='w-[300px] h-auto mt-2 rounded-md' />}
-
-          <label htmlFor="brand" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
-            Brand
+          </div>
+<div>
+          <label htmlFor="model" className='bg-gradient-to-r text-xl block from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent'>
+            Model
           </label>
           <input
             type="text"
-            name="brand"
-            id="brand"
+            name="model"
+            id="model"
             className='rounded-xl text-fuchsia-600 w-[300px] focus:outline-purple-600 border-none bg-purple-200 font-bold p-2'
-            placeholder='Brand'
+            placeholder='model'
             required
-            defaultValue={activeProduct?.brand || ''}
+            defaultValue={activeProduct?.model || ''}
           />
-
-          <label htmlFor="quantity" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
-            Quantity
-          </label>
-          <input
-            type="number"
-            name="quantity"
-            id="quantity"
-            className='rounded-xl text-fuchsia-600 w-[300px] focus:outline-purple-600 border-none bg-purple-200 font-bold p-2'
-            placeholder='Quantity'
-            required
-            defaultValue={activeProduct?.quantity || ''}
-          />
-
-          <label htmlFor="category" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
+          </div>
+<div>
+          <label htmlFor="category" className='bg-gradient-to-r text-xl block from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent'>
             Category
           </label>
           <select
@@ -198,8 +189,9 @@ export default function Products() {
               <option key={category._id} value={category._id}>{category.name}</option>
             ))}
           </select>
-
-          <label htmlFor="description" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
+          </div>
+<div>
+          <label htmlFor="description" className='bg-gradient-to-r text-xl block from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent'>
             Description
           </label>
           <textarea
@@ -210,8 +202,9 @@ export default function Products() {
             required
             defaultValue={activeProduct?.description || ''}
           />
-
-          <label htmlFor="rating" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
+          </div>
+<div>
+          <label htmlFor="rating" className='bg-gradient-to-r text-xl block from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent'>
             Rating
           </label>
           <input
@@ -223,8 +216,9 @@ export default function Products() {
             required
             defaultValue={activeProduct?.rating || ''}
           />
-
-          <label htmlFor="numReviews" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
+          </div>
+<div>
+          <label htmlFor="numReviews" className='bg-gradient-to-r text-xl block from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent'>
             Number of Reviews
           </label>
           <input
@@ -236,8 +230,9 @@ export default function Products() {
             required
             defaultValue={activeProduct?.numReviews || ''}
           />
-
-          <label htmlFor="price" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
+          </div>
+<div>
+          <label htmlFor="price" className='bg-gradient-to-r text-xl block from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent'>
             Price
           </label>
           <input
@@ -250,8 +245,9 @@ export default function Products() {
             required
             defaultValue={activeProduct?.price || ''}
           />
-
-          <label htmlFor="countInStock" className='bg-gradient-to-r text-xl from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent'>
+          </div>
+<div>
+          <label htmlFor="countInStock" className='bg-gradient-to-r text-xl block from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent'>
             Count in Stock
           </label>
           <input
@@ -263,7 +259,7 @@ export default function Products() {
             required
             defaultValue={activeProduct?.countInStock || ''}
           />
-
+</div>
           <button type='submit' className="p-[3px] relative w-[300px] mt-5">
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
             <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-purple-600 font-bold hover:bg-transparent hover:text-white">
@@ -284,23 +280,23 @@ export default function Products() {
         )}
 
         <div className='border border-fuchsia-600 my-6'></div>
-        <div className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent">
+        <div className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent">
           All Products
         </div>
         <div className="flex w-full mt-4 flex-wrap">
           {products.map((product) => (
-            <div key={product._id} className="p-3 text-black border m-3 rounded-xl shadow-md w-[250px]">
+            <div key={product._id} className="p-3  border m-3 rounded-xl shadow-md w-[250px]">
               <img src={product.image} alt={product.name} className="w-full h-[150px] object-cover rounded-t-xl" />
               <div className="p-2">
-                <div className="text-lg font-bold">{product.name}</div>
-                <div className="text-sm">{product.brand}</div>
+                <div className="text-lg font-bold ">{product.name}</div>
+                <div className="text-sm">{product.model}</div>
                 <div className="text-sm">Price: ${product.price}</div>
                 <button
                   onClick={() => {
                     setActiveProduct(product);
                     setFormMode('edit');
                   }}
-                  className="mt-2 p-2 bg-purple-600 text-white rounded-lg"
+                  className="mt-2 p-2 bg-purple-600 text-white w-full rounded-xl font-extrabold"
                 >
                   Edit
                 </button>

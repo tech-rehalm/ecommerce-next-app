@@ -17,7 +17,7 @@ export async function GET() {
 // Handle POST request to create a new product
 export async function POST(req: Request) {
   try {
-    const { name, image, brand, quantity, category, description, reviews, rating, numReviews, price, countInStock } = await req.json();
+    const { name, image, model, quantity, category, description, reviews, rating, numReviews, price, countInStock } = await req.json();
     
     await connectDB();
 
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     }
 
     const product = new Product({
-      name, image, brand, quantity, category, description, reviews, rating, numReviews, price, countInStock
+      name, image, model, quantity, category, description, reviews, rating, numReviews, price, countInStock
     });
 
     await product.save();

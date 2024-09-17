@@ -3,17 +3,14 @@
 import React from "react";
 import { FloatingDock } from "@/components/ui/floating-nav";
 import {
-    IconBrandFacebook,
-  IconBrandGithub,
-  IconBrandX,
-  IconExchange,
   IconHome,
-  IconNewSection,
   IconShoppingBagCheck,
   IconShoppingCart,
-  IconTerminal2,
+  IconShoppingBagDiscount,
+  IconHeart
 } from "@tabler/icons-react";
 import Image from "next/image";
+import { getSession } from "@/lib/getSession";
 
 export const  Nav=() =>{
   const links = [
@@ -26,11 +23,25 @@ export const  Nav=() =>{
     },
 
     {
-      title: "Shopping",
+      title: "Shop",
       icon: (
         <IconShoppingBagCheck className="h-full w-full text-purple-600" />
       ),
       href: "/shop",
+    },
+    {
+      title: "Promotion",
+      icon: (
+        <IconShoppingBagDiscount className="h-full w-full text-purple-600" />
+      ),
+      href: "/promotion",
+    },
+    {
+      title: "Favourites",
+      icon: (
+        <IconHeart className="h-full w-full text-purple-600" />
+      ),
+      href: "/favourites",
     },
     {
       title: "Cart",
@@ -42,7 +53,7 @@ export const  Nav=() =>{
     
   ];
   return (
-    (<div className="flex items-center justify-center absolute right-5 mt-5  p-6 w-full">
+    (<div className="flex items-center z-50 justify-center fixed right-5 top-9  p-6 w-full">
       <FloatingDock
         // only for demo, remove for production
         mobileClassName="translate-y-10"
