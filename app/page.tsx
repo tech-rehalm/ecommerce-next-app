@@ -2,8 +2,10 @@
 
 import AdminLayout from '@/components/AdminLayout';
 import { Promo } from '@/components/Promo';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { IconStarFilled, IconStarHalfFilled } from '@tabler/icons-react';
 
 interface Category {
   _id: string;
@@ -25,75 +27,131 @@ interface Product {
 }
 
 export default function Products() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [newproducts, setNewProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [productsByCategory, setProductsByCategory] = useState<{ [key: string]: Product[] }>({});
+  const [top, setTop] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetchProducts();
-    fetchCategories();
+    fetchTopProducts();
+    fetchNewproducts();
+    fetchCategories()
   }, []);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch('/api/products');
-      const data = await response.json();
-      setProducts(data.products as Product[]);
-      categorizeProducts(data.products);
-    } catch (error) {
-      toast.error("Failed to fetch products");
-    }
-  };
 
   const fetchCategories = async () => {
     try {
       const response = await fetch('/api/category');
       const data = await response.json();
-      setCategories(data.categories);
+      setCategories(data);
     } catch (error) {
       toast.error("Failed to fetch categories");
     }
   };
 
-  const categorizeProducts = (products: Product[]) => {
-    const categorized: { [key: string]: Product[] } = {};
-    products.forEach(product => {
-      const categoryId = product.category._id;
-      if (!categorized[categoryId]) {
-        categorized[categoryId] = [];
-      }
-      categorized[categoryId].push(product);
-    });
-    setProductsByCategory(categorized);
+  const fetchTopProducts = async () => {
+    try {
+      const response = await fetch('/api/top');
+      const data = await response.json();
+      setTop(data);
+      console.log(data);
+      
+    } catch (error) {
+      toast.error("Failed to fetch top");
+    }
   };
+  const fetchNewproducts = async () => {
+    try {
+      const response = await fetch('/api/new');
+      const data = await response.json();
+      setNewProducts(data);
+
+    } catch (error) {
+      toast.error("Failed to fetch categories");
+    }
+  };
+
+  
 
   return (
     <div className='flex flex-col bg-gray-200'>
-      <Promo/>
+      <div className="flex items-center w-full pl-8 py-4 shadow-lg shadow-gray-400">
+        <img src="/logo.svg" alt="logo" />
+        
+        <h1 className="text-xl font-bold text-blue-600">Envy Car Sales</h1>
+      </div>
+
+      <div className="flex  bg-gray-100 m-10 items-center justify-between rounded-xl shadow-lg">
+      <div className="text-xl flex flex-col pl-5">
+        <div className="text-transparent bg-gradient-to-br from-purple-600 to-[aqua] bg-clip-text text-[100px] py-12 font-extrabold p-2 ">Envy</div>
+        <h1 className="text-transparent bg-gradient-to-br from-purple-600 to-[aqua] bg-clip-text text-5xl my-5 font-extrabold main-title">Get your fancy car now</h1>
+        <h1 className="text-transparent bg-gradient-to-br from-purple-600 to-[aqua] bg-clip-text text-2xl font-extrabold main-title">Order now and get 5% discount on your car</h1>
+        <Link href="/shop" className='bg-gradient-to-br from-purple-600 to-[aqua]  w-[200px] text-white font-extrabold border-none p-2 rounded-xl my-3'>Go to shop</Link>
+      </div>
+      
+        <Promo/>
+      </div>
+      
       <div className="relative w-full min-h-screen  p-10 font-bold">
-        <div className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent">
-          Products by Category
+
+        <div className="text-6xl  font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text mb-2 py-3 text-transparent main-title inline">
+          Our new Products
         </div>
 
-        {categories.map(category => (
-          <section key={category._id} className="mb-8">
-            <div className="text-3xl font-extrabold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent mb-4">
-              {category.name}
+        <div className="w-full flex flex-wrap p-6 gap-5 items-center justify-evenly mx-auto ">
+          {newproducts?.map((product) => (
+            <div key={product._id} className='bg-purple-300 flex flex-col w-[270px] p-3 rounded-xl'>
+              <div className=' overflow-hidden h-[160px]'>
+                <img src={product.image} alt={product.name}  className='rounded-xl h-full'/>
+              </div>
+              <h1
+                className=" text-purple-600 border-none font-bold rounded-xl my-3  "
+              >
+                {product.name}
+              </h1>
+              <h1 className="text-sm font-bold text-gray-700">5 star rated</h1><br />
+              <div className=" w-full flex gap-2 font-bold my-1 text-[gold]">
+                <IconStarFilled/>
+                <IconStarFilled/>
+                <IconStarFilled/>
+                <IconStarFilled/>
+                <IconStarHalfFilled/>
+              </div>
+              <Link href={`/product/${product._id}`} className="w-full text-white p-2 rounded-xl text-sm bg-gradient-to-br font-extrabold text-center from-purple-600 to-[aqua]">View product</Link>
             </div>
-            <div className="flex flex-wrap gap-5">
-              {productsByCategory[category._id]?.map(product => (
-                <div key={product._id} className="p-3 border m-3 rounded-xl shadow-md w-[250px] bg-white">
-                  <img src={product.image} alt={product.name} className="w-full h-[150px] object-cover rounded-t-xl" />
-                  <div className="p-2">
-                    <div className="text-lg font-bold">{product.name}</div>
-                    <div className="text-sm">{product.model}</div>
-                    <div className="text-sm">Price: ${product.price}</div>
-                  </div>
-                </div>
-              ))}
+          ))}
+        </div>
+
+        <div className="text-6xl  font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text mb-2 py-3 text-transparent main-title inline">
+          Our top Products
+        </div>
+
+        <div className="w-full flex flex-wrap p-6 gap-5 items-center justify-evenly mx-auto ">
+          {top?.map((product) => (
+            <div key={product._id} className='bg-purple-300 flex flex-col w-[270px] p-3 rounded-xl'>
+              <div className=' overflow-hidden h-[160px]'>
+                <img src={product.image} alt={product.name}  className='rounded-xl h-full'/>
+              </div>
+              <h1
+                className=" text-purple-600 border-none font-bold rounded-xl my-3  "
+              >
+                {product.name}
+              </h1>
+              <h1 className="text-sm font-bold text-gray-700">5 star rated</h1><br />
+              <div className=" w-full flex gap-2 font-bold my-1 text-[gold]">
+                <IconStarFilled/>
+                <IconStarFilled/>
+                <IconStarFilled/>
+                <IconStarFilled/>
+                <IconStarHalfFilled/>
+              </div>
+              <Link href={`/product/${product._id}`} className="w-full text-white p-2 rounded-xl text-sm bg-gradient-to-br font-extrabold text-center from-purple-600 to-[aqua]">View product</Link>
             </div>
-          </section>
-        ))}
+          ))}
+        </div>
+
+
+        
+
+        
       </div>
     </div>
   );

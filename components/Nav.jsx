@@ -53,7 +53,7 @@ export const  Nav=() =>{
     
   ];
   return (
-    (<div className="flex items-center z-50 justify-center fixed right-5 top-9  p-6 w-full">
+    (<div className="flex items-center z-50   justify-center fixed right-5 top-9  p-6 w-full">
       <FloatingDock
         // only for demo, remove for production
         mobileClassName="translate-y-10"

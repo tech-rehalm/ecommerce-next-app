@@ -102,7 +102,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden md:flex h-16 gap-4 items-end absolute right-10 top-1  rounded-2xl bg-gradient-to-r from-purple-600 to-fuchsia-600 px-4 pb-3",
+        "mx-auto hidden md:flex h-16 gap-4 items-end absolute right-10 top-1  rounded-2xl bg-gradient-to-r from-purple-600 to-fuchsia-600 px-4 pb-3 shadow-lg ",
         className
       )}
     >
@@ -179,7 +179,7 @@ function IconContainer({
           {hovered && (
             <motion.div
              
-              className="px-2 py-0.5 whitespace-pre rounded-xl   bottom-0 font-extrabold text-white bg-purple-600  absolute  w-fit text-xs"
+              className="px-2 py-0.5 whitespace-pre rounded-xl   bottom-0 font-extrabold text-white bg-purple-600 border border-white  absolute  w-fit text-xs"
             >
               {title}
             </motion.div>

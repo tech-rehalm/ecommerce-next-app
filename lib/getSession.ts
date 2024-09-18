@@ -1,9 +1,12 @@
-// lib/getSessionClient.ts
-export const getSession = async () => {
-  const res = await fetch('/api/session');
-  if (!res.ok) {
-    throw new Error('Failed to fetch session');
+// lib/getSession.ts
+import { auth } from "@/auth"; // Adjust the import path if necessary
+
+export async function getSession() {
+  try {
+    const session = await auth();
+    return session;
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    throw error;
   }
-  const data = await res.json();
-  return data.session;
-};
+}

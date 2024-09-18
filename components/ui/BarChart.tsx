@@ -1,3 +1,5 @@
+"use client"
+
 import dynamic from 'next/dynamic';
 import React from 'react';
 
@@ -45,6 +47,7 @@ const BarChart: React.FC = () => {
         series={series}
         type="bar"
         height={320}
+        className="bg-gradient-to-br from-purple-600 to-[aqua]"
       />
     </div>
   );

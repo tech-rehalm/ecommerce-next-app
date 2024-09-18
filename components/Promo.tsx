@@ -6,8 +6,9 @@ import Link from "next/link";
 
 export function Promo() {
   const images = [
-    "/dn.jpg",
-    "download.jpg",
+    "/suv.jpg",
+    "lexus.jpg",
+    "fn.webp",
     "dic.webp"
     ];
   return (
