@@ -9,7 +9,7 @@ export async function GET() {
     await connectDB();
     const products = await Product.find().populate('category');
     return NextResponse.json({ products }, { status: 200 });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
     await product.save();
     return NextResponse.json({ product }, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

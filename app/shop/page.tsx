@@ -17,8 +17,6 @@ const ShopPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-gir
-z
   const fetchCategories = async () => {
     try {
       const response = await fetch('/api/category');

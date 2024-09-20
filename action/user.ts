@@ -5,7 +5,7 @@ import { User } from "@/models/User";
 import { redirect } from "next/navigation";
 import { hash } from "bcryptjs";
 import { CredentialsSignin } from "next-auth";
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 
 const login = async (formData: FormData) => {
   const email = formData.get("email") as string;
@@ -54,4 +54,14 @@ const fetchAllUsers = async () => {
   return users;
 };
 
-export { register, login, fetchAllUsers };
+const logOut = async () => {
+  try {
+    await signOut();
+    console.log("signed out");
+  } catch (error) {
+    console.log(error);
+  }
+}
+  
+
+export { register, login, fetchAllUsers, logOut };

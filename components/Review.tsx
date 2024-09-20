@@ -84,7 +84,6 @@ const Rev: React.FC<RevProps> = ({ product, setProduct, session }) => {
         </div>
         <button className='bg-gradient-to-bl rounded-xl my-4 from-purple-600 to-[aqua] w-full p-2 text-white font-extrabold' type="submit">Submit Review</button>
       </form>
-      <button className='bg-gradient-to-bl rounded-xl my-4 from-purple-600 to-[aqua] w-full p-2 text-white font-extrabold' type="submit">Add to cart</button>
     </div>
   );
 };

@@ -100,7 +100,7 @@ export default function Products() {
           {newproducts?.map((product) => (
             <div key={product._id} className='bg-purple-300 flex flex-col w-[270px] p-3 rounded-xl'>
               <div className=' overflow-hidden h-[160px]'>
-                <img src={product.image} alt={product.name}  className='rounded-xl h-full'/>
+                <img src={product.image} alt={product.name}  className='rounded-xl object-cover h-full'/>
               </div>
               <h1
                 className=" text-purple-600 border-none font-bold rounded-xl my-3  "
@@ -128,7 +128,7 @@ export default function Products() {
           {top?.map((product) => (
             <div key={product._id} className='bg-purple-300 flex flex-col w-[270px] p-3 rounded-xl'>
               <div className=' overflow-hidden h-[160px]'>
-                <img src={product.image} alt={product.name}  className='rounded-xl h-full'/>
+                <img src={product.image} alt={product.name}  className='rounded-xl object-cover h-full'/>
               </div>
               <h1
                 className=" text-purple-600 border-none font-bold rounded-xl my-3  "

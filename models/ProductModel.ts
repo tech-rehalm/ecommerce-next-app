@@ -17,6 +17,7 @@ const productSchema = new mongoose.Schema({
     name: { type: String, required: true },
     image: { type: String, required: true },
     model: { type: String, required: true },
+    color: { type: String, required: true },
     category: { type: ObjectId, ref: "Category", required: true },
     description: { type: String, required: true },
     reviews: [reviewSchema],
@@ -24,6 +25,7 @@ const productSchema = new mongoose.Schema({
     numReviews: { type: Number, required: true, default: 0 },
     price: { type: Number, required: true, default: 0 },
     countInStock: { type: Number, required: true, default: 0 },
+    onPromotion: { type: Boolean, required: true, default: false },
 },
     { timestamps: true });
 

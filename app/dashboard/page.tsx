@@ -67,37 +67,8 @@ export default function Products() {
   };
 
   return (
-    <div className='flex bg-gray-200'>
-      <div className="w-[150px] h-full fixed left-0 top-0 bottom-0 bg-gradient-to-r overflow-hidden  flex flex-col from-blue-600 justify-center text-start to-fuchsia-600 transition duration-500 ">
-        {categories?.map((category)=>(
-          <button className="text-xl font-extrabold text-purple-600 my-2 mx-1 p-2 border-none rounded-xl bg-gray-300">{category.name}</button>
-        ))}
-      </div>
-      <div className="relative w-full min-h-screen  p-10 font-bold ml-[150px]">
-        <div className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent">
-          Products by Category
-        </div>
-
-        {categories.map(category => (
-          <section key={category._id} className="mb-8">
-            <div className="text-3xl font-extrabold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent mb-4">
-              {category.name}
-            </div>
-            <div className="grid grid-cols-4 gap-5 ">
-              {productsByCategory[category._id]?.map(product => (
-                <div key={product._id} className="p-3 border m-3 rounded-xl shadow-md w-[250px] bg-white">
-                  <img src={product.image} alt={product.name} className="w-full h-[150px] object-cover rounded-t-xl" />
-                  <div className="p-2">
-                    <div className="text-lg font-bold">{product.name}</div>
-                    <div className="text-sm">{product.model}</div>
-                    <div className="text-sm">Price: ${product.price}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
-    </div>
+    <AdminLayout>
+      Hello there
+    </AdminLayout>
   );
 }
