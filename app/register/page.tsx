@@ -9,7 +9,7 @@ const Register = async () => {
   if (user) redirect("/");
 
   return (
-    <div className="w-full min-h-screen  flex flex-col items-center justify-center">
+    <div className="w-full min-h-screen  flex flex-col items-center justify-center mt-[80px]">
       <div className="flex flex-col w-[400px] shadow-inner shadow-blue-600 rounded-xl px-10 py-4">
       <h2 className="font-extrabold text-3xl w-full bg-gradient-to-r from-blue-600 via-fuchsia-600 to-fuchsia-600 bg-clip-text text-transparent">
         Welcome to Envy Car Sales

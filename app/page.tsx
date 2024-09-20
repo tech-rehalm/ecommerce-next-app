@@ -72,12 +72,7 @@ export default function Products() {
   
 
   return (
-    <div className='flex flex-col bg-gray-200'>
-      <div className="flex items-center w-full pl-8 py-4 shadow-lg shadow-gray-400">
-        <img src="/logo.svg" alt="logo" />
-        
-        <h1 className="text-xl font-bold text-blue-600">Envy Car Sales</h1>
-      </div>
+    <div className='flex flex-col bg-gray-200 mt-[80px]'>
 
       <div className="flex  bg-gray-100 m-10 items-center justify-between rounded-xl shadow-lg">
       <div className="text-xl flex flex-col pl-5">

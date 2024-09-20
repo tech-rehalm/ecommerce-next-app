@@ -36,7 +36,7 @@ const links = [
 export default function AdminNav() {
   const pathname = usePathname()
   return (
-    <div className='w-[200px]  text-white text-lg pt-6 pl-5  min-h-screen h-full  flex flex-col  bg-gradient-to-r from-purple-600 to-fuchsia-600 font-[900] bottom-0'>
+    <div className='max-w-[200px]  min-w-[200px]  text-white text-lg pt-6 pl-5  min-h-screen h-full  flex flex-col  bg-gradient-to-r from-purple-600 to-fuchsia-600 font-[900] bottom-0'>
       {links.map((link)=>(
         <Link  key={link.title} href={link.path} className={`${pathname === link.path? "bg-white text-purple-600 rounded-l-2xl": ""}w-full rounded-l-xl p-4`}>{link.title}</Link>
       ))}

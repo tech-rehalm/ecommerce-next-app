@@ -75,7 +75,7 @@ const ProductPage = () => {
           duration: 0.8,
           ease: 'easeInOut',
         }}
-        className="relative flex flex-col gap-4 items-center text-white rounded-xl  px-10 pb-10"
+        className="relative flex flex-col gap-4 items-center text-white rounded-xl  px-10 pb-10 mt-[80px]"
       >
         <div className="w-full p-7">
         <p className='text-2xl font-extrabold bg-gradient-to-bl rounded-xl from-[aqua] to-[lime] bg-clip-text text-transparent inline'>{session?.user.role}</p><br />

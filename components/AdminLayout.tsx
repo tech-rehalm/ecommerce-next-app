@@ -8,7 +8,7 @@ interface AdminLayoutProps {
 
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children, className }) => {
   return (
-    <div className={`w-full min-h-screen flex ${className}`}>
+    <div className={`w-full min-h-screen flex mt-[80px] ${className}`}>
       <AdminNav />
       {children}
     </div>

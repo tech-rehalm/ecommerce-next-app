@@ -125,7 +125,7 @@ export default function Products() {
 
   return (
     <AdminLayout>
-      <div className="w-full min-h-screen p-10 font-bold">
+      <div className="w-full min-h-screen p-10 font-bold mt-[80px]">
         <div className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text mb-2 text-transparent">
           {formMode === 'create' ? 'Create Product' : 'Edit Product'}
         </div>

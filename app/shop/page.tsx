@@ -69,7 +69,7 @@ const ShopPage = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="w-full h-full bg-gray-200">
+    <div className="w-full h-full bg-gray-200 mt-[80px]">
       <div className="fixed left-0 top-0 bottom-0 w-[130px] bg-gradient-to-r from-blue-500 to-fuchsia-600 flex flex-col gap-5 items-center pt-16">
         <button
           onClick={allProducts}

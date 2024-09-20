@@ -7,7 +7,7 @@ export default async function page() {
     const users = await fetchAllUsers()
   return (
     <AdminLayout >
-      <div className="flex flex-col w-full p-10">
+      <div className="flex flex-col w-full p-10 mt-[80px]">
       <div className="text-4xl m-3 p-3 font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text inline my-6 text-transparent">
           All Customers
         </div>

@@ -35,7 +35,7 @@ export default function page() {
 
   return (
     <AdminLayout>
-        <div className='flex flex-wrap'>
+        <div className='flex flex-wrap mt-[80px]'>
         {products.map((product) => (
             <div key={product._id} className="p-3  border m-3 rounded-xl shadow-md w-[250px]">
               <img src={product.image} alt={product.name} className="w-full h-[150px] object-cover rounded-t-xl" />

@@ -37,7 +37,7 @@ const CartPage = () => {
   }, []);
 
   return (
-    <div className='bg-gray-200 w-full min-h-screen'>
+    <div className='bg-gray-200 w-full min-h-screen mt-[80px]'>
       <div className="w-full p-3 flex mt-10 ">
         <div className="flex flex-col">
         <p className="main-title text-2xl font-extrabold p-2 bg-gradient-to-r from-fuchsia-700 to-blue-600 bg-clip-text text-transparent">{session?.user.role}</p>

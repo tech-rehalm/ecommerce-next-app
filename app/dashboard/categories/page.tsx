@@ -77,7 +77,7 @@ export default function Categories() {
   }, []);
 
   return (
-    <AdminLayout>
+    <AdminLayout className='mt-[80px]'>
       <div className="w-full min-h-screen p-10">
         <div className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text inline text-transparent">
           {formMode === 'create' ? 'Create Categories' : 'Edit Category'}

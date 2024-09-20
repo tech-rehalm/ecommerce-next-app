@@ -12,7 +12,7 @@ const Login = async () => {
   
 
   return (
-    <div className="w-full min-h-screen text-blue-600 font-bold  flex flex-col items-center justify-center">
+    <div className="w-full min-h-screen text-blue-600 font-bold  flex flex-col items-center justify-center mt-[80px]">
        <div className="flex flex-col w-[400px] shadow-inner shadow-purple-600 rounded-xl px-10 py-4">
       <form className="my-8 font bold" action={login}>
         <label className="w-full text-blue-600" htmlFor="email">Email Address</label>

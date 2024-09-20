@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import { useRouter } from 'next/navigation';
 
+
 const PlaceOrderPage = () => {
   const { products, total, reset } = useAppStore();
   const [session, setSession] = useState<any>(null);
@@ -62,12 +63,13 @@ const PlaceOrderPage = () => {
 
       const data = await res.json();
       toast.success("Order placed successfully!");
-      reset(); // Reset the cart
-      router.push('/'); // Redirect to home or another page
+      router.push('/checkout'); // Redirect to home or another page
     } catch (error: any) {
       toast.error(error.message);
     }
   };
+
+  const amount = total
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,7 +84,7 @@ const PlaceOrderPage = () => {
   }, []);
 
   return (
-    <div className='bg-gray-200 w-full min-h-screen flex flex-col items-center'>
+    <div className='bg-gray-200 w-full min-h-screen flex flex-col items-center mt-[80px]'>
       <ToastContainer />
       <h1 className="text-4xl font-extrabold p-4 mt-10 bg-gradient-to-r from-fuchsia-700 to-blue-600 bg-clip-text text-transparent">
         Review Your Order
@@ -109,6 +111,7 @@ const PlaceOrderPage = () => {
           Place Order
         </button>
       </div>
+      
     </div>
   );
 };

@@ -67,7 +67,7 @@ export default function Products() {
   };
 
   return (
-    <AdminLayout>
+    <AdminLayout className='mt-[80px]'>
       Hello there
     </AdminLayout>
   );
